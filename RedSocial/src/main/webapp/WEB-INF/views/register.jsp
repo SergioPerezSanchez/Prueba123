@@ -185,15 +185,16 @@
 	</div>
 	</div>
 	<script language="JavaScript" type="text/javascript">
-		document.form1.inputNombreRegistro.value="${nombre}";
-		document.form1.inputApellidosRegistro.value="${apellidos}";
-		document.form1.inputUsernameRegistro.value="${usuario}";
-		document.form1.inputEmailRegistro.value="${email}";
-		document.form1.inputPasswordRegistro.value="${password}";
-		document.form1.inputRePasswordRegistro.value="${repassword}";
-		document.form1.inputDireccionRegistro.value="${direccion}";
-		document.form1.inputTelefonoRegistro.value="${telefono}";
-		document.form1.inputFotoRegistro.value="${foto}";
+		val formulario = document.form1;
+	    formulario.inputNombreRegistro.value="${nombre}";
+	    formulario.inputApellidosRegistro.value="${apellidos}";
+	    formulario.inputUsernameRegistro.value="${usuario}";
+	    formulario.inputEmailRegistro.value="${email}";
+	    formulario.inputPasswordRegistro.value="${password}";
+		formulario.inputRePasswordRegistro.value="${repassword}";
+		formulario.inputDireccionRegistro.value="${direccion}";
+		formulario.inputTelefonoRegistro.value="${telefono}";
+		formulario.inputFotoRegistro.value="${foto}";
 	</script>
 </body>
 </html>
