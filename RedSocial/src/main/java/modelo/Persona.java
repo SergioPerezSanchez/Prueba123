@@ -96,11 +96,7 @@ public class Persona {
 		}
 		for(int j=0; j<this.original.length(); j++) {
 			if(esNumero(this.original.charAt(j)))numeros=true;
-		}
-		for(int j=0; j<this.original.length(); j++) {
 			if(esMayuscula(this.original.charAt(j)))mayuscula=true;
-		}
-		for(int j=0; j<this.original.length(); j++) {
 			if(esMinuscula(this.original.charAt(j)))minuscula=true;
 		}
 		return size&&numeros&&mayuscula&&minuscula;
