@@ -11,6 +11,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body >
+	<script language="JavaScript" type="text/javascript">
+    	val persona = "${nombre}";
+    </script>
     <div id="navBar">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -193,11 +196,11 @@
             <p style="align-content: center; margin:auto; display:table; font-size: 20px; color:grey;">Perfil</p>
          
                 <span id="reauth-email" class="reauth-email"></span>
-               	<p style=" font-size: 20px; color:grey;">Nombre:</p><p><c:out value="${persona}"/>${persona.getNombre()}</p>
-               	<p style=" font-size: 20px; color:grey;">Apellidos:</p><p><c:out value="${persona}"/>${persona.getApellidos()}</p>
-               	<p style=" font-size: 20px; color:grey;">Dirección:</p><p><c:out value="${persona}"/>${persona.getDireccion()}</p>
-               	<p style=" font-size: 20px; color:grey;">Teléfono:</p><p><c:out value="${persona}"/>${persona.getTelefono()}</p>
-               	<p style=" font-size: 20px; color:grey;">Email:</p><p><c:out value="${persona}"/>${persona.getEmail()}</p>
+               	<p style=" font-size: 20px; color:grey;">Nombre:</p><p>${persona.getNombre()}</p>
+               	<p style=" font-size: 20px; color:grey;">Apellidos:</p><p>${persona.getApellidos()}</p>
+               	<p style=" font-size: 20px; color:grey;">Dirección:</p><p>${persona.getDireccion()}</p>
+               	<p style=" font-size: 20px; color:grey;">Teléfono:</p><p>${persona.getTelefono()}</p>
+               	<p style=" font-size: 20px; color:grey;">Email:</p><p>${persona.getEmail()}</p>
                 <div id="remember" class="checkbox">
                   
                 </div>
