@@ -183,7 +183,8 @@ protected boolean createPublicacion(Publicacion p) {
         if(aux.get("username").toString().equalsIgnoreCase(username)&&(aux.get("fecha").toString().equalsIgnoreCase(fecha))) {
           List<String>els=(List<String>)aux.get("adjuntos");
           LinkedList<String> adjs=new LinkedList<String>();
-          for(int i=0; i<els.size();i++) {
+          int elsSize = els.size();
+          for(int i=0; i<elsSize;i++) {
             adjs.add(els.get(i));
           }
           pub=new Publicacion(aux.get("username").toString(), aux.get("mensaje").toString(), aux.get("compartir").toString(), adjs, aux.get("fecha").toString());
@@ -258,7 +259,8 @@ protected boolean createPublicacion(Publicacion p) {
         if(aux.get("username").toString().equalsIgnoreCase(username)) {
           List<String>els=(List<String>)aux.get("adjuntos");
           LinkedList<String> adjs=new LinkedList<String>();
-          for(int i=0; i<els.size();i++) {
+          int elsSize = els.size();
+          for(int i=0; i<elsSize;i++) {
             adjs.add(els.get(i));
           }
           pubs.add(new Publicacion(aux.get("username").toString(), aux.get("mensaje").toString(), aux.get("compartir").toString(), adjs, aux.get("fecha").toString()));
@@ -280,7 +282,8 @@ protected boolean createPublicacion(Publicacion p) {
         aux = elementos.next();
         List<String>els=(List<String>)aux.get("adjuntos");
         LinkedList<String> adjs=new LinkedList<String>();
-        for(int i=0; i<els.size();i++) {
+        int elsSize = els.size();
+        for(int i=0; i<elsSize;i++) {
           adjs.add(els.get(i));
         }
         pubs.add(new Publicacion(aux.get("username").toString(), aux.get("mensaje").toString(), aux.get("compartir").toString(), adjs, aux.get("fecha").toString()));
