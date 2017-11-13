@@ -56,6 +56,7 @@ private static final Logger logger = LoggerFactory.getLogger(RegisterController.
 		ModelAndView miMAV = new ModelAndView("register");
 		DAOPersona dao = new DAOPersona();
 		Persona p;
+		p = new Persona(password);
 		if(dao.existeUsername(username)){
 			miMAV.addObject("nombre", nombre);
 	        miMAV.addObject("apellidos", apellidos);
@@ -67,42 +68,41 @@ private static final Logger logger = LoggerFactory.getLogger(RegisterController.
 	        miMAV.addObject("foto", foto);
             miMAV.addObject("mensaje", "No se puede registrar. Hay una misma cuenta con ese username.");
             return miMAV;
+		}else if(dao.existeEmail(email)){
+			miMAV.addObject("nombre", nombre);
+		    miMAV.addObject("apellidos", apellidos);
+		    miMAV.addObject("usuario", username);
+		    miMAV.addObject("password", password);
+		    miMAV.addObject("repassword", repitePassword);
+		    miMAV.addObject("direccion", direccion);
+		    miMAV.addObject("telefono", telefono);
+		    miMAV.addObject("foto", foto);
+			miMAV.addObject("mensaje","No se puede registrar. Hay una cuenta con el mismo email.");
+			return miMAV;
+		}else if(!(password.equalsIgnoreCase(repitePassword))){
+			miMAV.addObject("nombre", nombre);
+			miMAV.addObject("apellidos", apellidos);
+			miMAV.addObject("usuario", username);
+			miMAV.addObject("email", email);
+			miMAV.addObject("direccion", direccion);
+			miMAV.addObject("telefono", telefono);
+			miMAV.addObject("foto", foto);
+			miMAV.addObject("mensaje","No se puede registrar. Las contraseñas no coinciden.");
+			return miMAV;
+		}else if(!p.requisitosPassword()) {
+			miMAV.addObject("nombre", nombre);
+			miMAV.addObject("apellidos", apellidos);
+			miMAV.addObject("usuario", username);
+			miMAV.addObject("email", email);
+			miMAV.addObject("direccion", direccion);
+			miMAV.addObject("telefono", telefono);
+			miMAV.addObject("foto", foto);
+			miMAV.addObject("mensaje","No se puede registrar. No se cumple los requisitos de la contraseña.");
+			return miMAV;
 		}else{
-			if(dao.existeEmail(email)){
-				miMAV.addObject("nombre", nombre);
-		        miMAV.addObject("apellidos", apellidos);
-		        miMAV.addObject("usuario", username);
-		        miMAV.addObject("password", password);
-		        miMAV.addObject("repassword", repitePassword);
-		        miMAV.addObject("direccion", direccion);
-		        miMAV.addObject("telefono", telefono);
-		        miMAV.addObject("foto", foto);
-				miMAV.addObject("mensaje","No se puede registrar. Hay una cuenta con el mismo email.");
-				return miMAV;
-			}else {
-				if(!(password.equalsIgnoreCase(repitePassword))){
-					miMAV.addObject("nombre", nombre);
-			        miMAV.addObject("apellidos", apellidos);
-			        miMAV.addObject("usuario", username);
-			        miMAV.addObject("email", email);
-			        miMAV.addObject("direccion", direccion);
-			        miMAV.addObject("telefono", telefono);
-			        miMAV.addObject("foto", foto);
-					miMAV.addObject("mensaje","No se puede registrar. Las contraseñas no coinciden.");
-					return miMAV;
-				}else {
-					p = new Persona(password);
-					if(!p.requisitosPassword()) {
-						miMAV.addObject("nombre", nombre);
-				        miMAV.addObject("apellidos", apellidos);
-				        miMAV.addObject("usuario", username);
-				        miMAV.addObject("email", email);
-				        miMAV.addObject("direccion", direccion);
-				        miMAV.addObject("telefono", telefono);
-				        miMAV.addObject("foto", foto);
-						miMAV.addObject("mensaje","No se puede registrar. No se cumple los requisitos de la contraseña.");
-						return miMAV;
-					}else{
+			p = new Persona(nombre, apellidos, username, email, password, direccion, telefono, foto, false, "usuario");
+			dao.crearPersona(p);
+			return new ModelAndView("home", "aviso", "Cuenta creada correctamente");
 						/*if(!foto.equalsIgnoreCase(".*")) {
 							//CODIGO CONTROL EXTENSION ARCHIVOS
 							miMAV.addObject("nombre", nombre);
@@ -117,13 +117,8 @@ private static final Logger logger = LoggerFactory.getLogger(RegisterController.
 				            return miMAV;
 						}else {*/
 							//CREA USUARIO
-							p = new Persona(nombre, apellidos, username, email, password, direccion, telefono, foto, false, "usuario");
-							dao.crearPersona(p);
-							return new ModelAndView("home", "aviso", "Cuenta creada correctamente");
+
 						//}
-					}
-				}
-			}
 		}
 	}
 }
